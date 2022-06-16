@@ -68,41 +68,82 @@
           <div id="content">
                 <div class="panel">
                   <div class="panel-body">
-                  <form action="/category_submit" method="post">
-                  @csrf 
+                  <form action="product_Submit" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="row-fluid sortable">
                         <div class="box span12">
                             <div class="box-header" data-original-title>
-                                <h2><i class="halflings-icon edit"></i><span class="break"></span>Add Category</h2>
+                                <h2><i class="halflings-icon edit"></i><span class="break"></span>Add product</h2>
 
                             </div>
 
                             <div class="box-content">
-                                <form class="form-horizontal" action="" method="post">
 
                                     <fieldset>
                                         <div class="control-group">
-                                            <label class="control-label" for="date01">Category Name</label>
+                                            <label class="control-label" for="date01">product Name</label>
                                             <div class="controls">
-                                                <input type="text" class="input-xlarge" name="name" required>
+                                                <input type="text" class="input-xlarge" name="product_name" required>
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="date01">product Id</label>
+                                            <div class="controls">
+                                                <input type="text" class="input-xlarge" name="product_id" required>
                                             </div>
                                         </div>
 
+                                        <div class="control-group hidden-phone">
+                                            <label class="control-label" for="textarea2">product price</label>
+                                            <div class="controls">
+                                                <input type="text" class="cleditor" name="product_price" rows="3" required></input>
+                                            </div>
+
+                                        </div>
 
                                         <div class="control-group hidden-phone">
-                                            <label class="control-label" for="textarea2">Category Description</label>
+                                            <label class="control-label" for="textarea2">product Description</label>
                                             <div class="controls">
-                                                <textarea class="cleditor" name="description" rows="3" required></textarea>
+                                                <textarea class="cleditor" name="product_description" rows="3" required></textarea>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="control-group">
+                                            <label class="control-label">image Upload</label>
+                                            <div class="controls">
+                                                <input type="file" name="product_image" required>
+                                            </div>
+                                        </div>
+                                        {{-- {{$categories}} --}}
+
+                                        <div class="form-group">
+                                            <label for="cat_id">Category <span class="text-danger">*</span></label>
+                                            <div class="controls">
+                                                <select name="cat_id" id="cat_id" class="form-control">
+                                                    <option value="">--Select any category--</option>
+                                                    @foreach($categories as $key=>$cat_data)
+                                                    <option value='{{$cat_data->id}}'>{{$cat_data->name}}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <div class="control-group hidden-phone">
+                                            <label class="control-label" for="textarea2">product quantity</label>
+                                            <div class="controls">
+                                                <input class="cleditor" type="number" name="product_qauntity" rows="3" required></input>
                                             </div>
 
                                         </div>
 
 
                                         <div class="form-actions">
-                                            <button type="submit" class="btn btn-primary">Add Category</button>
+                                            <button type="submit" class="btn btn-primary">Add product</button>
                                         </div>
                                     </fieldset>
-                                </form>
+                            
 
                             </div>
                         </div>
@@ -122,3 +163,6 @@
 
 
 @endsection()
+
+
+
